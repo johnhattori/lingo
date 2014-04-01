@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import random
+
 def main():
 
     done = False
@@ -17,11 +19,9 @@ def main():
                 print(colored)
             
 def get_score(target, guess):
-    print(target, guess, end=" : ")
-
     assert len(target) == len(guess)
-    tlist = list(target)
-    glist = list(guess)
+    tlist = list(target.lower())
+    glist = list(guess.lower())
     for index, char in enumerate(glist):
         if char == tlist[index]:
             glist[index] = char.upper()
