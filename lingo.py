@@ -2,11 +2,13 @@
 
 import random
 
-def main():
+WORD_FILE = 'words.txt'
 
+def main():
+    words = extract_words(WORD_FILE)
     done = False
     while not done:
-        target = get_random_word()
+        target = get_random_word(words)
         playing = True
         while playing:
             guess = get_guess_word()
@@ -17,7 +19,13 @@ def main():
                 score = get_score(target, guess)
                 colored = color_score(score)
                 print(colored)
-            
+
+def get_guess_word():
+    return input("Enter a five letter word: ")
+
+def color_score(score):
+    return score
+
 def get_score(target, guess):
     assert len(target) == len(guess)
     tlist = list(target.lower())
@@ -32,7 +40,19 @@ def get_score(target, guess):
             
     return ''.join(glist)    
 
+def extract_words(file_path):
+    with open(file_path) as fh:
+        words = fh.read().strip().split(' ')        
+    return words
+
+def get_random_word(words):
+    return random.choice(words)
+
+
+
 if __name__ == "__main__":
+    main()
+    """
     print(get_score('a', 'a'), 'A')
     print(get_score('a', 'b'), '-') 
     print(get_score('ab', 'ab'), 'AB')
@@ -41,4 +61,4 @@ if __name__ == "__main__":
     print(get_score('abc', 'def'), '---')
     print(get_score('aa', 'ba'), '-A')
     print(get_score('ab', 'aa'), 'A-')
-
+    """
