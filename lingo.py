@@ -37,6 +37,8 @@ def get_score(target, guess):
     for index, char in enumerate(glist):
         if char not in tlist and char != glist[index].upper():
             glist[index] = "-"
+        elif char in tlist:    
+            tlist[tlist.index(char)] = ""
             
     return ''.join(glist)    
 
@@ -47,8 +49,6 @@ def extract_words(file_path):
 
 def get_random_word(words):
     return random.choice(words)
-
-
 
 if __name__ == "__main__":
     main()
@@ -61,4 +61,6 @@ if __name__ == "__main__":
     print(get_score('abc', 'def'), '---')
     print(get_score('aa', 'ba'), '-A')
     print(get_score('ab', 'aa'), 'A-')
+    print(get_score('algal', 'agagk'), 'Aga--')
     """
+
